@@ -1,4 +1,36 @@
-import pandas as pd
+testcase_num = int(input())
+
+def check_sudoku(a):
+    for i in range(9):
+        sudoku = set(a[i])
+        if len(sudoku) < 9 :
+            return False
+    return True
+
+for t in range(testcase_num):
+    if t > 0:
+        input()
+
+    sudoku = [list(map(int, input().split())) for i in range(9)]
+    sudoku_row = [i for i in sudoku]
+    sudoku_col = [list(sudoku[i][j] for i in range(9)) for j in range(9)]
+    sudoku_square = []
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            s_s = sudoku[i][j:j+3] + sudoku[i+1][j:j+3] + sudoku[i+2][j:j+3]
+            sudoku_square.append(s_s)
+    
+    row_check = check_sudoku(sudoku_row)
+    col_check = check_sudoku(sudoku_col)
+    square_check = check_sudoku(sudoku_square)
+
+    if row_check and square_check and col_check:
+        print(f"Case {t+1}: CORRECT")
+    else:
+        print(f"Case {t+1}: INCORRECT")
+
+
+""" import pandas as pd
 
 testcase_num = int(input())
 
@@ -49,3 +81,4 @@ for t in range(testcase_num):
         print(f"Case {t+1}: CORRECT")
     else:
         print(f"Case {t+1}: INCORRECT")
+ """
