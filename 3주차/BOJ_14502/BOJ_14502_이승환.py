@@ -8,6 +8,15 @@ n,m = map(int,input().split())
 lab = [list(input().split()) for _ in range(n)]
 
 # 1단계, 연구실 이중리스트를 받아 벽을 세우고, 그 정보(리스트)를 반환
+# 벽 세우는 아이디어
+# 0 원소중에서 3개를 뽑는 조합을 구함.
+# 해당 조합에서 사용하는 값은 0 원소의 인덱스값.
+
+# 조합을 구하는 함수
+def comb_zero(list):
+    pass
+
+# 구한 조합을 가지고 벽을 세우는 함수
 def wall(list):
     pass
 
@@ -21,4 +30,7 @@ def wall(list):
 def virus(list):
     pass
 
-# 3단계
+# 3단계, 안전지역의 수를 카운트
+# 0의 개수를 세는 함수.
+def count_zero(list):
+    pass
