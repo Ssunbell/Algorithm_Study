@@ -26,4 +26,4 @@ for i in range(n):
             top = stack[-1]
             print(top)
 
-# 시간초과 해결하기
+# 시간초과 해결하기 : pypy3로 올리니 시간초과 해결
