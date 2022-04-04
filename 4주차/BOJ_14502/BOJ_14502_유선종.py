@@ -44,7 +44,7 @@ for i in range(com - 2):
 
 def dfs(row, col):
     if row < 0 or col < 0 or row >= n or col>= m:
-        return 
+        pass
 
     if graph[row][col] == 0:
         graph[row][col] = 2
@@ -53,10 +53,13 @@ def dfs(row, col):
         dfs(row, col - 1)
         dfs(row + 1, col)
         dfs(row, col + 1)
-        return 
+        null_count = sum(graph,[]).count(0)
+        if result < null_count:
+            result = null_count
+        return result
     
     elif graph[row][col] == 1 or graph[row][col] == 2:
-        return 
+        pass
 
 
 
@@ -69,10 +72,7 @@ if one_len + 3 >= two_len:
         graph[wall[2][0]][wall[2][1]] = 1
         
         for matrix in virus_start:
-            dfs(matrix[0], matrix[1])
-            null_count = sum(graph,[]).count(0)
-            if result < null_count:
-                result = null_count
+            print(result = dfs(matrix[0], matrix[1]))
     print(result)
 else:
     result = 0
@@ -85,8 +85,7 @@ else:
         for matrix in virus_start[0]:
             dfs(matrix[0], matrix[1])
             null_count = sum(graph,[]).count(0)
-            if result < null_count:
-                result = null_count
+
     print(result)
 
 '''
