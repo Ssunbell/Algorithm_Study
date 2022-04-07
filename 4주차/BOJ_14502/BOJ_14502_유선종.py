@@ -1,4 +1,5 @@
 import copy
+
 n, m = map(int, input().split())
 
 def locate(list_name, index_1, num):
@@ -42,24 +43,24 @@ for i in range(com - 2):
             
 ###################################################
 
-def dfs(row, col):
+def dfs(row, col):   
     if row < 0 or col < 0 or row >= n or col>= m:
-        pass
+        return False
 
     if graph[row][col] == 0:
         graph[row][col] = 2
+
+    if graph[row][col] == 2:
         
         dfs(row-1, col)
         dfs(row, col - 1)
         dfs(row + 1, col)
         dfs(row, col + 1)
-        null_count = sum(graph,[]).count(0)
-        if result < null_count:
-            result = null_count
-        return result
-    
-    elif graph[row][col] == 1 or graph[row][col] == 2:
-        pass
+        
+        return graph
+
+    elif graph[row][col] == 1:
+        return False
 
 
 
@@ -70,9 +71,9 @@ if one_len + 3 >= two_len:
         graph[wall[0][0]][wall[0][1]] = 1
         graph[wall[1][0]][wall[1][1]] = 1
         graph[wall[2][0]][wall[2][1]] = 1
-        
         for matrix in virus_start:
-            print(result = dfs(matrix[0], matrix[1]))
+            print(dfs(matrix[0], matrix[1]))
+
     print(result)
 else:
     result = 0
@@ -81,7 +82,6 @@ else:
         graph[wall[0][0]][wall[0][1]] = 1
         graph[wall[1][0]][wall[1][1]] = 1
         graph[wall[2][0]][wall[2][1]] = 1
-        
         for matrix in virus_start[0]:
             dfs(matrix[0], matrix[1])
             null_count = sum(graph,[]).count(0)
