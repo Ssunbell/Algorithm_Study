@@ -63,5 +63,5 @@ for i in wall_lab:
     lst = virus(i)
     lab_result.append(find_zero(lst))
 
-print(lab_result)
+print(max(lab_result))
 
