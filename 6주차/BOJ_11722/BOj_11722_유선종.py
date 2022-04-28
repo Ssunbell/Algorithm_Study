@@ -1,6 +1,6 @@
 n = int(input())
 l = list(map(int,input().split()))[::-1]
-dp = [0] * (n +1)
+dp = [0] * (n)
 order = 1
 
 for i in range(n):
