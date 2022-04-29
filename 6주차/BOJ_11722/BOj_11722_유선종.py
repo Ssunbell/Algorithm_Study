@@ -9,7 +9,6 @@ for i in range(n):
         if l[j] > l[i] and dp[j] + 1 > dp[i]:
             dp[i] = dp[j] + 1
             order = max(order, dp[i])
-
 print(order)
         
         
