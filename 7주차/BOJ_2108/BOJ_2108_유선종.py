@@ -1,31 +1,37 @@
-import sys
-input=sys.stdin.readline
-sys.setrecursionlimit(10 ** 6)
 n = int(input())
 data = [int(input()) for _ in range(n)]
+data.sort() # 오름차순
 
 def mean(data):
-    return int(round(sum(data)/len(data),0))
+    return int(round(sum(data)/n,0))
 
 def median(data):
-    data.sort()
-    a,b = divmod(len(data),2)
+    a,b = divmod(n,2)
     if b == 1:
         return data[a]
     else:
         return (data[a-1] + data[a]) / 2
 
 def mode(data):
-    answer=dict()
+    temp = set(data)
+    answer = dict()
+    for key in temp:
+        answer[key] = 0
+        
     for num in data:
-        if num not in answer.keys():
-            answer[num]=1
-        else: answer[num]+=1
+        answer[num] += 1
+        
+    max_value = max(answer.values())
+    max_list = [key for key, value in answer.items() if value == max_value]
+    max_list.sort()
     
-    return max(answer, key=answer.get)
+    if len(max_list) == 1:
+        return max_list[0]
+    else:
+        return max_list[1]
 
 def range_st(data):
-    return max(data) - min(data)
+    return data[-1] - data[0]
 
 print(mean(data))
 print(median(data))
