@@ -1,5 +1,6 @@
-n = int(input())
-data = [int(input()) for _ in range(n)]
+import sys
+n = int(sys.stdin.readline())
+data = [int(sys.stdin.readline()) for _ in range(n)]
 data.sort() # 오름차순
 
 def mean(data):
