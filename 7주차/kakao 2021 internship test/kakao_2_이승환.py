@@ -11,7 +11,7 @@ def solution(places):
         room.append("XXXXXXX")
         return room
 
-    def bfs(place,i,j,depth,x=None,y=None, chk = 1):
+    def check_nodes(place,i,j,depth,x=None,y=None, chk = 1):
         if depth == 2:
             return chk
         depth += 1
@@ -27,7 +27,7 @@ def solution(places):
                     chk = 0
                     return chk
                 else:
-                    chk = bfs(place,i+dx[idx],j+dy[idx],depth,dx[idx],dy[idx])
+                    chk = check_nodes(place,i+dx[idx],j+dy[idx],depth,dx[idx],dy[idx])
                     if chk == 0:
                         return chk
         return chk
@@ -36,7 +36,7 @@ def solution(places):
         place_check = [[0]*5 for _ in range(5)]
         for i in range(1,6):
             for j in range(1,6):
-                chk = bfs(place,i,j,0)
+                chk = check_nodes(place,i,j,0)
                 place_check[i-1][j-1] = chk
         pc = sum(place_check, [])
         if 0 in pc:
