@@ -22,7 +22,10 @@ class Statistics():
     def mode(self):
         cnt = Counter(nums).most_common()
         mod = []
+        print(cnt)
         for i in cnt:
+            print(i[1])
+            print(cnt[0][1])
             if i[1] == cnt[0][1]:
                 mod.append(i[0])
             else:
