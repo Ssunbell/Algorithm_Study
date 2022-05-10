@@ -4,6 +4,7 @@ input_s = lambda : sys.stdin.readline().strip()
 n,m,v = map(int,input().split())
 node = [list(map(int, input_s().split())) for _ in range(m)]
 
+
 # 노드를 딕셔너리에 정리해서 문제 풀어야함.
 def dfs(nodes,v):
     nodes.sort(reverse=True)
@@ -16,6 +17,8 @@ def dfs(nodes,v):
         for edge in nodes:
             if curr == edge[0] and edge[1] not in q and edge[1] not in visited:
                 q.append(edge[1])
+            elif curr == edge[1] and edge[0] not in q and edge[0] not in visited:
+                q.append(edge[0])
     return visited
         
 def bfs(nodes,v):
@@ -29,6 +32,8 @@ def bfs(nodes,v):
         for edge in nodes:
             if curr == edge[0] and edge[1] not in q and edge[1] not in visited:
                 q.append(edge[1])
+            elif curr == edge[1] and edge[0] not in q and edge[0] not in visited:
+                q.append(edge[0])
     return visited
 
 d = dfs(node,v)
