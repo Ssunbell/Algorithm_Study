@@ -1,7 +1,5 @@
 import sys
 
-import sys
-
 input_s = lambda : sys.stdin.readline().strip()
 
 n = int(input_s())
@@ -50,13 +48,15 @@ for action in s:
         curr = move_forward(direction,curr)
 
 for i in range(len(all_i)):
-    all_i[i] += -min(all_i)
-for j in range(len(all_j)):
-    all_j[j] += -min(all_j)
-print(all_c)
-print(all_i)
-print(all_j)
+    all_c[i][0] += -min(all_i)
+    all_c[i][1] += -min(all_j)
 
+maze = [["#"] * (max(all_j)-min(all_j)+1) for i in range(max(all_i)-min(all_i)+1)]
 
+for coo in all_c:
+    maze[coo[0]][coo[1]] = "."
 
-
+for i in range(len(maze)):
+    for j in range(len(maze[0])):
+        print(maze[i][j],end="")
+    print()
