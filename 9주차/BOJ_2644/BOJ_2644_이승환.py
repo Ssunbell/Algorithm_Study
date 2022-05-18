@@ -27,8 +27,6 @@ def dfs(graph,root,dest):
         visited.append(curr)
         if depth_chart[curr] == -1:
             depth += 1
-        elif curr == root:
-            depth = 0
         else:
             depth = depth_chart[curr]
         for node in graph[curr]:
@@ -36,6 +34,7 @@ def dfs(graph,root,dest):
                 stack_s.append(node)
                 depth_chart[node] = depth + 1
     result = depth_chart[dest]
+    print(visited)
     return result
 
 print(dfs(graph,root,dest))
