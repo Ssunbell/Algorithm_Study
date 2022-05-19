@@ -1,6 +1,3 @@
-import sys
-
-intput = lambda: sys.stdin.readline().rstrip()
 exp = input().split('-')
 
 num = []
