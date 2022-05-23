@@ -20,11 +20,11 @@ def dfs(x, depth):
     visited[x] = True
 
     if x == y:
-        return answer.append(depth)
+        answer.append(depth)
 
     for i in tree[x]:
         if not visited[i]:
-            return dfs(i, depth)
+            dfs(i, depth)
 dfs(x, 0)
 print(-1 if len(answer) == 0 else answer[0] - 1)
 
