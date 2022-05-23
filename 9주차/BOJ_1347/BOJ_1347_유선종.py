@@ -15,29 +15,30 @@ direction = 3
 
 for com in command:
     if com == 'L':
-        direction = (direction + 1) % 4
-    elif com == 'R':
         direction = (direction - 1) % 4
+    elif com == 'R':
+        direction = (direction + 1) % 4
     elif com == 'F':
         xn = dx[direction] + xn
         yn = dy[direction] + yn
         map[yn][xn] = '.'
 
 minmax = []
+temp_row = []
+temp_col = []
 for i, row in enumerate(map):
-    temp_row = []
-    temp_col = []
     try:
         print('들어왔다')
         temp_col.append(row.index('.'))
+        temp_col.append()
         temp_row.append(i)
     except:
         print('없당')
         continue
-    minmax.append(min(temp_row))
-    minmax.append(max(temp_row))
-    minmax.append(min(temp_col))
-    minmax.append(max(temp_col))
+minmax.append(min(temp_row))
+minmax.append(max(temp_row))
+minmax.append(min(temp_col))
+minmax.append(max(temp_col))
 
 print(minmax)
 
