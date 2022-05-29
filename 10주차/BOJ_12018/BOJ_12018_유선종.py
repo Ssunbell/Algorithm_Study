@@ -17,8 +17,8 @@ for i, lct in enumerate(lecture):
             mileage[i] = 1
         else:
             mileage[i] = min(value)
+            
 mileage.sort()
-print(mileage)
 answer = 0
 for num in mileage:
     m -= num
