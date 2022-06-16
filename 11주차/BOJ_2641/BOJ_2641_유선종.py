@@ -18,4 +18,3 @@ for case in list_case:
 print(len(result))
 for case in result:
     print(*case)
-    
