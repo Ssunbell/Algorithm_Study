@@ -4,8 +4,6 @@ input = lambda: sys.stdin.readline().rstrip()
 
 test_case = int(input())
 
-answer = []
-
 for i in range(test_case):
     n, m = map(int, input().split())
     doc_imp = list(map(int, input().split()))
