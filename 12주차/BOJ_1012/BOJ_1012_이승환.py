@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 
-def input_s(): return sys.stdin.readline().strip()
+input_s = lambda : sys.stdin.readline().strip()
 
 t = int(input_s())
 
