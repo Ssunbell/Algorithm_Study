@@ -16,8 +16,8 @@ s_calculation = 1
 
 for i in range(len(sign)):
 
-    # print('s_calculation',sign[i], s_calculation, i)
-    # print('answer',sign[i],answer, i)
+    print('s_calculation',sign[i], s_calculation, i)
+    print('answer',sign[i],answer, i)
     if sign[i] == '(':
         s_lst.append(sign[i])
         s_calculation *= 2
