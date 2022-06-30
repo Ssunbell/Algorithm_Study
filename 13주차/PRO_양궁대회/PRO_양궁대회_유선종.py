@@ -41,7 +41,7 @@ def solution(n, info):
             score.pop(tmp_idx)
             max_list.append(list(case.pop(tmp_idx)))
             max_count -= 1
-        answer = sorted(a, key= lambda x : (-x[10], -x[9], -x[8], -x[7], -x[6],
+        answer = sorted(max_list, key= lambda x : (-x[10], -x[9], -x[8], -x[7], -x[6],
                                             -x[5], -x[4], -x[3], -x[2], -x[1], -x[0]))[0]
     else:
         answer = list(case[score.index(max(score))])
