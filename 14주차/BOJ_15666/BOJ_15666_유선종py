@@ -1,0 +1,11 @@
+import sys
+
+input = lambda : sys.stdin.readline().strip()
+
+# t = int(input())
+# l = int(input())
+# cur_pos = tuple(map(int, input().split()))
+# tar_pos = tuple(map(int, input().split()))
+l = 8
+cur_pos = (0, 0)
+tar_pos = (7, 0)
