@@ -7,7 +7,7 @@ n, m = map(int,input_s().split())
 s = deque(map(int,input_s().split()))
 
 sets = sorted(set(s))
-
+result = deque()
 for s in sets:
     root = s
     st = deque()
@@ -19,8 +19,12 @@ for s in sets:
         pr.append(curr)
 
         if len(pr) == m:
-            
-            
+            if pr not in result:
+                result.append(pr)
+            else:
+                st.clear()
+                st.append(root)
+
         for i in sets:
             if i >= pr[-1]:
                 st.append(i)
