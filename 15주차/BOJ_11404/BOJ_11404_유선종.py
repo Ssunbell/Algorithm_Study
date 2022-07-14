@@ -6,20 +6,19 @@ input = lambda: sys.stdin.readline().strip()
 n,m = int(input()), int(input())
 graph = [[float('inf')]*n for i in range(n)]
 
-# 인접 행렬 생성
 for _ in range(m):
     s,e,w = map(int,input().split())
-    s-=1;e-=1
+    s-=1
+    e-=1
     graph[s][e] = min(graph[s][e], w)
 
-# 플로이드-와샬 수행
+
 for k in range(n):
     graph[k][k] = 0
     for i in range(n):
         for j in range(n):
             graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
 
-# 출력
 for i in graph:
     for j in i:
         print(j if j!=float('inf') else 0, end = " ")
