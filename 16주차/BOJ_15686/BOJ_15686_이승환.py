@@ -40,8 +40,9 @@ for c in real_chicken:
         city[i][j] = 2
     # 각 가정마다의 치킨거리를 저장하는 리스트
     chicken_dist = deque()
-    while house:
-        i,j = house.popleft()
+    q = house.copy()
+    while q:
+        i,j = q.popleft()
         find_cd = deque()
         visited = deque()
         depth_chart = [[0]*n for _ in range(n)]
@@ -63,7 +64,6 @@ for c in real_chicken:
                         chicken_dist.append(depth_chart[c_i][c_j] + 1)
                         find_cd.clear()
                         break
-    
     # 한 치킨집 조합의 모든 치킨거리를 저장
     all_chicken_dist.append(sum(chicken_dist))
 
@@ -71,5 +71,4 @@ for c in real_chicken:
     for i,j in c:
         city[i][j] = 0
 
-print(all_chicken_dist)
 print(min(all_chicken_dist))
