@@ -5,7 +5,6 @@ def solution(m, musicinfos):
     
     for node, re in melody_dict.items():
         m = m.replace(re, node)
-    print(m)
     
     melody_list = []
     for row in musicinfos:
@@ -27,12 +26,11 @@ def solution(m, musicinfos):
             tmp_mel += melody[i % len(melody)]
         melody_list.append([cycle, tmp_mel])
     
-    print(melody_list)
     answer = []
     for i, mel in enumerate(melody_list):
         if m in mel[1]:
             answer.append([mel[0],musicinfos[i].split(',')[2]])
-    print(answer)
+
     if len(answer) == 0:
         return "(None)"
     elif len(answer) == 1:
