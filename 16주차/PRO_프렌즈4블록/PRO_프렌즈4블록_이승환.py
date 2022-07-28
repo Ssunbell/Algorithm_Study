@@ -17,7 +17,8 @@ def solution(m, n, board):
                     boom.add((i,j+1))
                     boom.add((i+1,j+1))
         
-        # 폭파
+        # 폭파, 하나씩 빼면 안되는데 동시에 빼면 됨.
+        boom = sorted(boom,reverse=True)
         for blank in boom:
             i,j = blank
             del board_new[i][j]
