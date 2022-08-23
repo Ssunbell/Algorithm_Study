@@ -27,7 +27,7 @@ for place in houses:
         break
 
 print(curr)
-print(place)
+
 #________________________________________________________#
 
 # from collections import deque
