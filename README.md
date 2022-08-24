@@ -48,7 +48,7 @@ $ git log --oneline
 $ git reset --soft [복사한 커밋 코드]
 ```
 
-1. 만일 내가 올린 코드에 수정/추가 등의 추가 커밋을 push할 경우에 커밋 형식을 다음과 같이 작성해주세요. 수정을 2번째 할 경우에 `fix2`를 붙여주시면 됩니다.
+4. 만일 내가 올린 코드에 수정/추가 등의 추가 커밋을 push할 경우에 커밋 형식을 다음과 같이 작성해주세요. 수정을 2번째 할 경우에 `fix2`를 붙여주시면 됩니다.
 
 ```
 git commit -m "BOJ_1000_홍길동_fix"
@@ -80,16 +80,21 @@ git commit -m "BOJ_1000_홍길동_add"
 |7.28|동적 프로그래밍, 그래프 탐색, 깊이 우선 탐색, 구현|리모컨, LCS, 방금그곡|BOJ_1107, BOJ_9251, 카카오 2018 BLIND RECRUIMENT|
 |8.4|동적 프로그래밍, 그래프 탐색, 깊이 우선 탐색, 구현|내리막 길, 암호코드, 토마토, 소수찾기|BOJ_1520, BOJ_2011, BOJ_7569, 프로그래머스 연습문제|
 |8.11|그리디 알고리즘, 정렬, 수학|신입사원, 안테나|BOJ_1946, BOJ_18310|
-|8.25|그리디 알고리즘, 정렬, 그래프 탐ㅐ|수리공 항승, 주식, 성격유형 검사하기|BOJ_1449, BOJ_11501, 카카오 TECH INTERSHIP 2022|
+|8.25|그리디 알고리즘, 정렬, 구현|수리공 항승, 주식, 성격유형 검사하기|BOJ_1449, BOJ_11501, 카카오 TECH INTERSHIP 2022|
 
 ## 💖 참고사항
 
 ### 💕 원격 저장소 등록하기
-
-`git remote add <원격저장소 이름> <주소>` 형식으로 작성합니다.
+1. 원하는 디렉토리에 clone해서 다운받습니다. 
 
 ```bash
-$ git remote add algorithmStudy https://github.com/Trailblazer-Yoo/Multicamp_Algorithm_Study.git
+$ git clone https://github.com/Trailblazer-Yoo/Algorithm_Study
+```
+
+2. `git remote add <원격저장소 이름> <주소>` 형식으로 작성합니다.
+
+```bash
+$ git remote add algorithmStudy https://github.com/Trailblazer-Yoo/Algorithm_Study
 ```
 
 ### 💕 원격 저장소 조회
@@ -98,5 +103,5 @@ $ git remote add algorithmStudy https://github.com/Trailblazer-Yoo/Multicamp_Alg
 `git remote -v`로 등록이 잘 됐는지 확인해봅니다.
 ```
 $ git remote -v
-algorithmStudy https://github.com/Trailblazer-Yoo/Multicamp_Algorithm_Study.git (fetch)
-algorithmStudy https://github.com/Trailblazer-Yoo/Multicamp_Algorithm_Study.git (push)
+algorithmStudy https://github.com/Trailblazer-Yoo/Algorithm_Study (fetch)
+algorithmStudy https://github.com/Trailblazer-Yoo/Algorithm_Study (push)
