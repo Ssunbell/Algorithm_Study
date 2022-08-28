@@ -1,4 +1,3 @@
-from ast import Lambda
 import sys
 from math import ceil
 
@@ -14,15 +13,8 @@ for case in cases:
         plank_c = ceil((case[1] - extra_p) / L)
         cnt += plank_c
         extra_p = extra_p  + plank_c * L
-        print('plank_c',plank_c)
-        print('cnt',cnt)
-        print('extra_p',extra_p)
     else:
-        print('case', case[0], case[1])
         plank_c = ceil((case[1] - case[0]) / L)
         cnt += plank_c
         extra_p = case[0] + plank_c * L
-        print('plank_c',plank_c)
-        print('cnt',cnt)
-        print('extra_p',extra_p)
-    
+print(cnt)
