@@ -19,21 +19,8 @@ def solution(queue1, queue2):
             sum1 += curr
             sum2 -= curr
         answer += 1
-    
-        if answer > q_len:
+
+        if answer > q_len*2:
             answer = -1
             break
-        
     return answer
-
-# q1 = [3, 2, 7, 2]
-# q2 = [4, 6, 5, 1]
-# print(solution(q1,q2))
-
-# q1 = [1, 2, 1, 2]
-# q2 = [1, 10, 1, 2]
-# print(solution(q1,q2))
-
-q1 = [1,1]
-q2 = [1,5]
-print(solution(q1,q2))
