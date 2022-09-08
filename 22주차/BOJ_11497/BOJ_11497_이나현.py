@@ -5,7 +5,7 @@ for t in range(T):
     arr = sorted(list(map(int, input().split())))
     arr1 = arr[::2]
     arr2 = arr[1::2]
-    arr1 = arr1[::-1]
+    arr2 = arr2[::-1]
     arr = arr1 + arr2
     answer = 0
     for i in range(N):
