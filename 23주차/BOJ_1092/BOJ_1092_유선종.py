@@ -1,35 +1,57 @@
-from collections import deque
+import sys
+input = lambda: sys.stdin.readline().strip()
 
 N = int(input())
-limit = sorted(deque((map(int,input().split())), reverse=True))
+limit = sorted(list(map(int,input().split())), reverse=True)
 M = int(input())
-box_weight = sorted(deque(map(int,input().split())), reverse=True)
+box_weight = sorted(list(map(int,input().split())), reverse=True)
+checked = [False for _ in range(M)] # 박스 옮긴 여부
+position = [0 for _ in range(N)] # 크레인의 위치
+box_count = 0
 
 if limit[0] < box_weight[0]:
     print(-1)
 else:
-    result, tmp, l = [], [], 0
-    for i in range(len(box_weight)):
-        while True:
-            if box_weight[i] <= limit[l]:
-                tmp.append(box_weight[i])
-                
-                if l == (len(limit)-1) or i == (len(box_weight)-1):
-                    result.append(tmp)
-                    tmp, l = [], 0
+    cnt = 0
+    while box_count < len(box_weight):
+        for i in range(N): # 크레인 위치
+            while position[i] < len(box_weight):
+                if not checked[position[i]] and limit[i] >= box_weight[position[i]]:
+                    checked[position[i]] = True
+                    position[i] += 1
+                    box_count += 1
                     break
-                
-                l = (l + 1) % len(limit)
+                position[i] += 1
+        cnt += 1
 
-                break
-            else:                
-                if l == (len(limit)-1) or i == (len(box_weight)-1):
-                    result.append(tmp)
-                    tmp, l = [], 0
+    print(cnt)
+    
+
+    
+## append 형식을 사용할 경우 시간초가가 남  
+# else:
+#     result, tmp, l = [], [], 0
+#     for i in range(len(box_weight)):
+#         while True:
+#             if box_weight[i] <= limit[l]:
+#                 tmp.append(box_weight[i])
+                
+#                 if l == (len(limit)-1) or i == (len(box_weight)-1):
+#                     result.append(tmp)
+#                     tmp, l = [], 0
+#                     break
+                
+#                 l = (l + 1) % len(limit)
+
+#                 break
+#             else:                
+#                 if l == (len(limit)-1) or i == (len(box_weight)-1):
+#                     result.append(tmp)
+#                     tmp, l = [], 0
                     
-                l = (l + 1) % len(limit)
-    print(result)
-    print(len(result))
+#                 l = (l + 1) % len(limit)
+
+#     print(len(result))
 
 
 '''

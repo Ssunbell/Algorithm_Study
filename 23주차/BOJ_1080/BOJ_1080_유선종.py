@@ -5,11 +5,10 @@ input = lambda : sys.stdin.readline().strip()
 N, M = map(int, input().split())
 A = [list(map(int,list(input()))) for _ in range(N)]
 B = [list(map(int,list(input()))) for _ in range(N)]
-print(A)
-print(B)
+
 cnt = 0
-for row in range(M-2):
-    for col in range(N-2):
+for row in range(N-2):
+    for col in range(M-2):
         if A[row][col] != B[row][col]:
             cnt += 1
             for rp in range(3):
