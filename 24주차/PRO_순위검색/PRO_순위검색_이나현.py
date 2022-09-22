@@ -68,3 +68,13 @@ query = ["java and backend and junior and pizza 100",
         "- and - and - and chicken 100",
         "- and - and - and - 150"]
 print(solution(info, query))
+
+
+# search(level, tmp, pos)
+#                           지원자
+#level0         cpp         java           python
+#level1       b      f    b        f     b        f
+#level2     j   s  j   s j  s    j   s  j  s   j    s 
+#level3   c  p c p c p c p c p c p c p c p c p c p c p 
+#level4   50            120      50
+#        100
