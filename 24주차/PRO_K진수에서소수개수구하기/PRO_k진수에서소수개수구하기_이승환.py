@@ -7,6 +7,6 @@ def convert_iter(num, base):
 
 def solution(n, k):
     answer = -1
-        
+    # 소수를 어케찾을지 감이안오넹....
     
     return answer
