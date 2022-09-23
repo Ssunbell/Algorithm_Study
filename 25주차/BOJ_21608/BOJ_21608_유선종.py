@@ -61,7 +61,6 @@ for i in range(n):
             y = j + dy[k]
             if 0<=x<n and 0<=y<n:
                 if seat_list_2D[x][y] in likes_set:
-                    print(x, y, seat_list_2D[x][y])
                     cnt += 1
         if cnt > 0:
             answer += 10 ** (cnt - 1)
