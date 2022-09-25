@@ -22,6 +22,7 @@ else:
     positive.sort(reverse=True)
     negative.sort()
     
+    # 양수
     if len(positive) % 2 == 0:
         for i in range(0, len(positive), 2):
             answer += positive[i] * positive[i+1]
@@ -29,6 +30,8 @@ else:
         for i in range(0, len(positive)-1, 2):
             answer += positive[i] * positive[i+1]
         answer += positive[-1]
+        
+    # 음수 + 0
     if len(negative) % 2 == 0:
         for i in range(0, len(negative), 2):
             answer += negative[i] * negative[i+1]
@@ -37,7 +40,7 @@ else:
             answer += negative[i] * negative[i+1]
         answer += negative[-1]
     
-    answer += len(one_list)
+    answer += len(one_list) # 1만 더해주기
     print(answer)
     
 # jump = False
