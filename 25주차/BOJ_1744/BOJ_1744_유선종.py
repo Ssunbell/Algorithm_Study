@@ -21,7 +21,6 @@ else:
 
     positive.sort(reverse=True)
     negative.sort()
-    print(positive, negative)
     
     if len(positive) % 2 == 0:
         for i in range(0, len(positive), 2):
