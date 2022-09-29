@@ -12,7 +12,6 @@ def cumulative_sum(row:int, col:int, cumul:list) -> list:
     cumul = [r[:col-1] for r in cumul[:row-1]]
     
     yield from cumul
-    
 
 def solution(board:list, skill:list) -> int:
 
@@ -29,6 +28,7 @@ def solution(board:list, skill:list) -> int:
         cumul[r2 + 1][c2 + 1] += degree if t == 2 else (-1) * degree
 
     answer = 0
+    # 제너레이터 객체를 쓰면 적게는 5ms, 많게는 50ms의 시간이 절약됨
     cumulation = cumulative_sum(row, col, cumul)
     for r, row in enumerate(cumulation):
         for c, value in enumerate(row):
