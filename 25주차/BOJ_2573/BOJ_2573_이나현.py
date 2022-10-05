@@ -1,4 +1,4 @@
-#[빙산]
+#[빙산] -> 시간초과
 import sys
 import copy
 sys.setrecursionlimit(10 ** 6)

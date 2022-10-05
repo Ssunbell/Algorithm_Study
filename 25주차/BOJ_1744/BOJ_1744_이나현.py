@@ -1,3 +1,4 @@
+#[수 묶기]
 N = int(input())
 arr = [int(input()) for _ in range(N)]
 #양수리스트, 음수리스트 선언 및 값 추가
