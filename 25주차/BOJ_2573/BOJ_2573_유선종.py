@@ -11,6 +11,14 @@ melting_list = deque(sorted([(i,j) for i in range(n) for j in range(m) if graph[
 dx = [-1, 1, 0, 0]
 dy = [0, 0, 1, -1]
 
+## 이걸 함수로 만들면 쪼끔 나아지긴 함
+def melting_ice(melting: list):
+    for m in melting:
+        row, col, melt = m
+        graph[row][col] = max(0, graph[row][col] - melt)
+        if not graph[row][col]:
+            del_list.append((row, col))
+
 def bfs(i, j):
     q = deque([(i, j)])
     visited[i][j] = 1
@@ -30,12 +38,9 @@ def bfs(i, j):
                     visited[nx][ny] = 1
                     
         if melt:
-            melting.append((x,y,melt))
-
-    for row, col, melt in melting:
-        graph[row][col] = max(0, graph[row][col] - melt)
-        if not graph[row][col]:
-            del_list.append((row,col))
+            melting.append((x, y, melt))
+    
+    melting_ice(melting)
 
 answer = 0
 while melting_list:
@@ -51,7 +56,7 @@ while melting_list:
     if group > 1:
         print(answer)
         break
-            
+
     for d in del_list:
         melting_list.remove(d)
     
