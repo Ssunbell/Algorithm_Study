@@ -24,7 +24,7 @@ def bfs(i, j):
     visited[i][j] = 1
     melting = []
     
-    while q: # dfs 시작
+    while q: # bfs 시작
         x, y = q.popleft()
         melt = 0
         for idx in range(4): # 방향 탐색

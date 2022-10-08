@@ -34,6 +34,7 @@ for student, likes_set in student_dict.items():
 
     max_v = max(dp_likes)
     max_count = dp_likes.count(max_v)
+    #아무도 없는 경우
     if dp_likes.count(0) == n**2 and dp_empty.count(0) == n**2:
         for idx in range(n**2):
             r, c = divmod(idx, n)
@@ -44,7 +45,7 @@ for student, likes_set in student_dict.items():
         if max_count == 1: # 최대값이 1개만 있는 경우
             row, col = divmod(dp_likes.index(max_v), n)
             seat_list_2D[row][col] = student
-            
+        # 만족하는 칸이 여러개인 경우
         elif max_count > 1:
             empty_list = [(dp_empty[idx],idx) for idx, value, in enumerate(dp_likes) if value == max_v]
             empty_list.sort(key=lambda x: (-x[0], x[1]))
