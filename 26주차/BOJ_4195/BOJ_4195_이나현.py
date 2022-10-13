@@ -3,6 +3,41 @@ import sys
 input = lambda : sys.stdin.readline().rstrip()
 
 def find_parent(a):
+    if parent[a] != a:
+        parent[a] = find_parent(parent[a])
+    return parent[a]
+
+def union(a, b):
+    a = find_parent(a)
+    b = find_parent(b)
+    if a != b:
+        parent[b] = a
+        cnt[a] += cnt[b]
+
+T = int(input())
+for t in range(T):
+    N = int(input())
+    parent = dict()
+    cnt = dict()
+    for n in range(N):
+        a, b = input().split()
+        if a not in parent:
+            parent[a] = a
+            cnt[a] = 1
+        if b not in parent:
+            parent[b] = b
+            cnt[b] = 1
+        union(a, b)
+        print(cnt[find_parent(a)])
+
+
+
+'''
+시간 초과
+import sys
+input = lambda : sys.stdin.readline().rstrip()
+
+def find_parent(a):
     if a != parent[a]:
         parent[a] = find_parent(parent[a])
     return parent[a]
@@ -45,3 +80,4 @@ for t in range(T):
             parent.append(id[a])
             parent.append(id[a])
         print(parent.count(0))
+'''
