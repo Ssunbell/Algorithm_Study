@@ -2,7 +2,7 @@ import sys
 sys.setrecursionlimit(10**8)
 def find_parent(room,n):
     try:
-        # key: 방 번호, value : 최소 방 번호로 업데이트
+        # 기존의 key: 방 번호, value : 최소 방 번호로 업데이트
         room[n] = find_parent(room,room[n])
 
         return room[n]
@@ -11,7 +11,6 @@ def find_parent(room,n):
         room[n] = n + 1
 
         return n
-
 
 def solution(k, room_number):
     result = []
