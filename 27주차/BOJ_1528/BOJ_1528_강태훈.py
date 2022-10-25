@@ -6,28 +6,26 @@ n = int(input())
 
 
 def get_kms(num):
-    kms = []
-    for size in range(1, 1+int(log10(num))):
+    for size in range(1, len(str(num))):
         for i in range(2**size):
             val = format(i, "b").zfill(size).replace(
                 "0", "4").replace("1", "7")
             n = int(val)
             if n > num:
                 break
-            kms.append(n)
-    return kms[::-1]
+            yield n
 
 
 kms_vals = get_kms(n)
 
 
-q = deque()
+q = []
 answer = [-1]
 visited = [False for _ in range(n+1)]
 q.append([0, []])
 
 while q:
-    curr_sum, curr_list = q.popleft()
+    curr_sum, curr_list = q.pop()
     if curr_sum == n:
         answer = curr_list
         break
