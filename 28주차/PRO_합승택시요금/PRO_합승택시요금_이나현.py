@@ -26,12 +26,12 @@ def solution(n, s, a, b, fares): #n:노드 수, s:시작점, fares:각 간선사
     for c, d, f in fares:
         graph[c].append((d, f))
         graph[d].append((c, f))
-    start_fare = dikjstra(s, n)
+    start_fare = dikjstra(s, n)             #start 지점에서 다른 노드들까지 가는데 필요한 최소 요금 list
     answer = start_fare[a] + start_fare[b]
     for node in range(1, n+1):
         if node == s:
             continue
-        node_fares = dikjstra(node, n)
+        node_fares = dikjstra(node, n)      #node 지점에서 다른 노드들까지 가는데 필요한 최소 요금 list
         node_fare = node_fares[s] + node_fares[a] + node_fares[b]
         answer = min(answer, node_fare)
     return answer

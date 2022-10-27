@@ -8,6 +8,7 @@ total_time = [0] * (N + 1)
 visited = []
 que = deque()
 
+# 1.진입차수가 0인 정점을 큐에 추가
 for i in range(1, N+1):
     if len(pre_build[i]) == 0:
         que.append(i)
@@ -16,13 +17,15 @@ for i in range(1, N+1):
 while que:
     node = que.popleft()
     total_time[node] += build_time[node]
+    # 2.큐에서 꺼낸 원소에 연결된 모든 간선을 제거
     for i in range(1, N+1):
         if i in visited:
             continue
-        if node in pre_build[i]:    #먼저 지어야하는 건물에 node가 있다면
+        if node in pre_build[i]:
             pre_build[i].remove(node)
             total_time[i] = max(total_time[i], total_time[node])
-        if len(pre_build[i]) == 0:  #pre_build를 모두 지은 경우
+        # 3.간선 제거 이후 진입차수가 0인 정점을 큐에 추가
+        if len(pre_build[i]) == 0:
             que.append(i)
             visited.append(i)
 print(*total_time[1:], sep='\n')
