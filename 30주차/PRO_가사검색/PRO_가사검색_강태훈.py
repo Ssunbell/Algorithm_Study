@@ -50,6 +50,8 @@ def solution(words, queries):
             node, idx = trie_reverse.regression(log[::-1])
         else:
             node, idx = trie.regression(log)
+        
+
         answer.append(dfs(node, duration=len(log)-idx))
     print(answer)
 
