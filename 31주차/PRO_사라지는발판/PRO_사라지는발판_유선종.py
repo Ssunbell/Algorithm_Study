@@ -27,7 +27,7 @@ def bfs(board, aloc, bloc, turn):
     
     # 이동이 불가능하거나 둘이 같은 좌표에 서있게 되면 게임 종료
     if not position:
-        return not A_turn, turn
+        return not A_turn, turn # positioin이 없으면 A가 진 경기이므로 not A_turn으로 졌다는 것을 표시
     if aloc == bloc:
         return A_turn, turn + 1
     
