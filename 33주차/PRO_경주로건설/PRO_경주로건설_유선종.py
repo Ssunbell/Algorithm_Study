@@ -17,14 +17,14 @@ def solution(board:List[List[int]]) -> int:
     board[0][0] = 1
     answer = float('inf')
     
-    # (row, col, direction, cost, board)
+    # (row, col, direction, cost)
     q = deque([(0,0,'right',0), (0,0,'down',0)])
     
     # 0 : right, 1 : donw, 2 : left, 3 : up
     dp = [[[float('inf')] * N for i in range(N)] for j in range(4)]
     k = 0
     while q:
-        x, y, drt, cost = q.popleft()
+        x, y, drt, cost = q.pop()
         
         for i, next_drt in enumerate(['right', 'down', 'left', 'up']):
             nx, ny = x + dx[i], y + dy[i]
@@ -46,7 +46,7 @@ def solution(board:List[List[int]]) -> int:
                     if nx == N-1 and ny == N-1:
                         continue
                         
-                    q.appendleft((nx, ny, next_drt, ncost))
+                    q.append((nx, ny, next_drt, ncost))
         
     for i in range(4):
         answer = min([answer, dp[i][N-1][N-1]])

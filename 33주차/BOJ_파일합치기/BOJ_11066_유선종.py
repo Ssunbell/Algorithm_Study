@@ -1,5 +1,5 @@
 import sys
-input = lambda : sys.stdin.readline().strip()
+input = lambda : sys.stdin.readline().rstrip()
 
 t = int(input())
 for _ in range(t):
@@ -12,12 +12,9 @@ for _ in range(t):
             dp[i][i+x] = 99999999999
             
             ## 파일의 길이만큼 누적합
-            tmp = sum(pages[i:i+x+1])
-            print(i, i+x)
+            cumul = sum(pages[i:i+x+1])
             for k in range(i,i+x):
-                dp[i][i+x] = min(dp[i][i+x],dp[i][k]+dp[k+1][i+x]+tmp)
-            for p in dp:
-                print(p)
+                dp[i][i+x] = min(dp[i][i+x],dp[i][k]+dp[k+1][i+x]+cumul)
     print(dp[0][k-1])
 '''
 1
@@ -25,6 +22,9 @@ for _ in range(t):
 1 21 3 4 5 35 5 4 3 5 98 21 14 17 32
 
 # dp[i][k] + dp[k+1][i+x] + tmp의 해석
+비교할 대상은 3개의 원소 양 끝
+[1, 21, 3] -> [22, 3, 4]
+            -> [1, 24, 4]
 x == 1,
 [0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 [0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

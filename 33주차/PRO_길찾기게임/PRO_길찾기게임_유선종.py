@@ -58,7 +58,7 @@ sys.setrecursionlimit(10**6)
 
 def solution(nodeinfo):
     tmp = sorted(nodeinfo, key=lambda x: x[1], reverse=True)
-    print(tmp)
+
     T = Tree()
     for i in range(len(nodeinfo)):
         T.insert(tmp[i][0], nodeinfo.index(tmp[i]) + 1)
