@@ -37,7 +37,7 @@ def solution(alp:int, cop:int, problems:List[int]):
                 ): # dp에 없거나 dp보다 낮은 값일 경우
                     dp[state] = total_cost
                     heappush(hq, (total_cost, state))
-                
+    
     return hq[0][0]
 
 if __name__=='__main__':
