@@ -1,2 +1,4 @@
 .cph/
 .vscode/
+.vscode
+.DS_Store

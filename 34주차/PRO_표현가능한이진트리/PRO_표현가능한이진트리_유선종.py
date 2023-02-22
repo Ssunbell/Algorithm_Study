@@ -2,16 +2,18 @@ from typing import *
 
 def check_perfect(i:int, number:int) -> Union[int, Callable]:
     if 2**(i-1) < number <= 2**i:
+        # 2의 n승 포화 이진트리의 n 구하기
         return 2**i - 1
     else:
         return check_perfect(i+1, number)
     
 def dfs(bin_num:List[int], p:int, depth:int) -> int:
     if depth == 0:
-        return 1
+        return True
     elif bin_num[p] == '0':
         if bin_num[p-depth] == '1' or bin_num[p+depth] == '1':
-            return 0
+            # 부모 노드가 0인데 자식 노드가 1인 경우는 표현할 수 없는 포화 이진트리
+            return False
         
     left = dfs(bin_num, p - depth, depth//2) # 왼쪽 탐색
     right = dfs(bin_num, p + depth, depth//2) # 오른쪽 탐색
@@ -27,8 +29,7 @@ def solution(numbers:List[int]) -> List[int]:
         else:
             p_len = 1
             
-        if '1' in bin(p_len)[3:]: # 만약 2의 n 제곱승이 아니라면 (ex: 111)
-            bin_num = '0'*(p_len-len(bin_num)) + bin_num
+        bin_num = '0'*(p_len-len(bin_num)) + bin_num
         is_p_bin = dfs(bin_num, len(bin_num)//2, (p_len+1)//4)
         answer.append(is_p_bin)
 

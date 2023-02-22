@@ -92,7 +92,9 @@ git commit -m "BOJ_1000_홍길동_add"
 |11.10|투포인터, BFS, DFS, 자료구조|보석 쇼핑, 양과 늑대, 행렬과 연산|2020 카카오 인턴십, 2022 KAKAO BLIND RECRUITMENT, 2022 KAKAO TECH INTERNSHIP|
 |11.24|구현, 시물레이션, 트리 구조, 다익스트라|2048(Easy), 가사검색, 등산코스 정하기|2020 카카오 인턴십, 2020 KAKAO BLIND RECRUITMENT, 2022 KAKAO TECH INTERNSHIP|
 |12.16|누적합, 이분탐색, BFS, DFS, 최대값 슬라이딩 윈도우|두 배열의 합, 사라지는 발판, 징검다리 건너기|BOJ_2143, 2022 KAKAO BLIND RECRUITMENT, 2019 카카오 개발자 겨울 인턴쉽|
-|12.30|백트래킹, 구현, dfs, 이분탐색, 최소힙큐, |2차원 동전 뒤집기, 다단계 칫솔 판매, 무지의 먹방 라이브|프로그래머스 연습문제, 2021 Dev-Matching: 웹 백엔드 개발자(상반기), 2019 KAKAO BLIND RECRUITMENT|
+|12.30|백트래킹, 구현, dfs, 이분탐색, 최소힙큐|2차원 동전 뒤집기, 다단계 칫솔 판매, 무지의 먹방 라이브|프로그래머스 연습문제, 2021 Dev-Matching: 웹 백엔드 개발자(상반기), 2019 KAKAO BLIND RECRUITMENT|
+|01.13|누적합, DP, dfs, bfs, 트리|파일 합치기, 경주로 건설, 길찾기 게임|BOJ_11066, 2020 카카오 인턴쉽, 2019 KAKAO BLIND RECRUITMENT|
+|02.22|구현, DP, 데이크스트라, 힙, DFS, 비트 연산자|마법사 상어와 토네이도, 코딩테스트 공부, 표현 가능한 이진트리|BOJ_20057, 2023 KAKAO BLIND RECRUITMENT, 2022 KAKAO TECH INTERNSHIP|
 
 ## 💖 참고사항
 
