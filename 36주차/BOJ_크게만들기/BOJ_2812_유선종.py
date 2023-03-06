@@ -14,21 +14,3 @@ for i in range(N):
     stack.append(num[i])
 
 print(''.join(list(stack)[:N-K]))
-
-# from collections import deque
-# from itertools import islice as slicing
-# from typing import *
-
-# N, K = map(int, input().split())
-# n = deque(list(map(int, input())))
-
-# def delete_min(n:List[int], K:int, depth:int, stack=[]):
-#     if depth == 0:
-#         yield stack
-#     else:
-#         if stack:
-#             stack[-1] < 
-
-#         yield from delete_min(n, K, depth-1, )
-
-# print(''.join(list(map(str, next(iter(delete_min(n, K, K)))))))
