@@ -1,145 +1,81 @@
-from copy import deepcopy
+def find(r, c):
+    if parent[r][c] != (r, c):
+        rr, cc = parent[r][c]
+        parent[r][c] = find(rr, cc)
+    return parent[r][c]
 
-class cell(object):
-    def __init__(self):
-        self.cells = [[''] * 50 for _ in range(50)]
-        self.before_cells = deepcopy(self.cells)
-        self.merged = {} # (r, c) : [해당 병합에 속한 (x, y)들 모음]
-    def update1(self, r, c, value):
-        if (r, c) in self.merged.keys(): # (r, c)가 이전에 병합된 적이 있으면
-            for loc in self.merged[(r, c)]:
-                self.cells[loc[0]][loc[1]] = value
-        else:
-            self.cells[r][c] = value
-            self.before_cells[r][c] = value
-    def update2(self, value1, value2):
-        if value1 == value2:
-            return
-        for r in range(50):
-            for c in range(50):
-                if self.cells[r][c] == value1:
-                    if (r, c) in self.merged.keys(): # 병합된 적이 있으면
-                        for loc in self.merged[(r, c)]:
-                            self.cells[loc[0]][loc[1]] = value2
-                    else:
-                        assert self.cells[r][c] == self.before_cells[r][c]
-                        self.cells[r][c] = value2
-                        self.before_cells[r][c] = value2
-    def merge(self, r1, c1, r2, c2): # before_cells는 여기서 사용 x
-        def m(r1, c1, r2, c2):
-            if (r1, c1) in self.merged.keys() and (r2, c2) in self.merged.keys(): # 둘 다 병합된 적 있는 경우(병합은 따로 된 상황임)
-                for loc in self.merged[(r2, c2)]: # (r2, c2)의 병합된 셀들을 모두 (r1, c1)으로 바꾸기
-                    self.cells[loc[0]][loc[1]] = self.cells[r1][c1]
-                merged_result = []
-                for loc in self.merged[(r1, c1)]: # (r1, c1)이 포함하는 셀들에 병합 적용
-                    if loc != (r1, c1):
-                        self.merged[loc].extend(self.merged[(r2, c2)])
-                        if not merged_result:
-                            merged_result = self.merged[loc]
-                self.merged[(r1, c1)] = merged_result
-                for loc in self.merged[(r1, c1)]:
-                    self.merged[loc] = merged_result
-            elif (r1, c1) in self.merged.keys(): # 이전에 (r1, c1)만 병합된 적이 있는 경우
-                self.merged[(r1, c1)].append((r2, c2))
-                self.merged[(r2, c2)] = self.merged[(r1, c1)][:]
-                self.cells[(r2, c2)] = self.cells[(r1, c1)]
-            elif (r2, c2) in self.merged.keys(): # 이전에 (r2, c2)만 병합된 적이 있는 경우
-                for loc in self.merged[(r2, c2)]: # (r2, c2)의 병합된 셀들을 모두 (r1, c1)으로 바꾸기
-                    self.cells[loc[0]][loc[1]] = self.cells[r1][c1]
-                self.merged[(r1, c1)].append((r1, c1))
-                self.merged[(r1, c1)] = self.merged[(r2, c2)][:]
-            else: # 두 셀 모두 병합된 적 없는 경우
-                self.merged[(r1, c1)] = [(r1, c1), (r2, c2)]
-                self.merged[(r2, c2)] = [(r1, c1), (r2, c2)]
-        if self.cells[r1][c1] == self.cells[r2][c2]:
-            return
-        if self.cells[r1][c1] != '':
-            self.cells[r2][c2] = self.cells[r1][c1]
-            m(r1, c1, r2, c2)
-        else: # (r1, c1)이 빈 셀인 경우
-            self.cells[r1][c1] = self.cells[r2][c2]
-            m(r2, c2, r1, c1)
+def update1(r, c, value):
+    root = find(r, c) # 부모 노드 찾기
+    for i in range(51):
+        for j in range(51):
+            if find(i, j) == root:
+                cells[i][j] = value
 
+def update2(value1, value2):
+    for i in range(51):
+        for j in range(51):
+            if cells[i][j] == value1:
+                cells[i][j] = value2
 
-    def merge(self, r1, c1, r2, c2): # before_cells는 여기서 사용 x
-        def m(r1, c1, r2, c2): # (r1, c1) 기준으로 값을 바꿈
-            if (r1, c1) in self.merged.keys() and (r2, c2) in self.merged.keys(): # 둘 다 병합된 적 있는 경우(병합은 따로 된 상황임)
-                for loc in self.merged[(r2, c2)]: # (r2, c2)의 병합된 셀들을 모두 (r1, c1)으로 바꾸기
-                    self.cells[loc[0]][loc[1]] = self.cells[r1][c1]
-                merged_result = [] # 병합 결과
-                for loc in self.merged[(r1, c1)]: # (r1, c1)와 병합된 셀들에 병합 적용
-                    self.merged[loc].extend(self.merged[(r2, c2)])
-                    if not merged_result: # 병합 결과는 한번만 받으면 됨.
-                        merged_result = self.merged[loc]
-                for loc in self.merged[(r2, c2)]: # (r2, c2)와 병합된 셀들에 병합 적용
-                    self.merged[loc] = merged_result
-            elif (r1, c1) in self.merged.keys(): # 이전에 (r1, c1)만 병합된 경우
-                val =  self.cells[r1][c1]
-                merged_result = self.merged[(r1, c1)] + [(r2, c2)]
-                for loc in merged_result:
-                    self.merged[loc] = merged_result
-                    self.cells[loc[0]][loc[1]] = val
-            elif (r2, c2) in self.merged.keys(): # 이전에 (r2, c2)만 병합된 경우
-                val =  self.cells[r1][c1]
-                merged_result = self.merged[(r2, c2)] + [(r1, c1)]
-                for loc in merged_result:
-                    self.merged[loc] = merged_result
-                    self.cells[loc[0]][loc[1]] = val
-            else: # 두 셀 모두 병합된 적 없는 경우
-                self.merged[(r1, c1)] = [(r1, c1), (r2, c2)]
-                self.merged[(r2, c2)] = [(r1, c1), (r2, c2)]
-                self.cells[r2][c2] = self.cells[r1][c1]
-        if self.cells[r1][c1] == self.cells[r2][c2]:
-            return
-        if self.cells[r1][c1] != '':
-            m(r1, c1, r2, c2)
-        else: # (r1, c1)이 빈 셀인 경우
-            m(r2, c2, r1, c1) # 순서만 바꾸면 됨.
+def merge(r1, c1, r2, c2):
+    r1, c1 = find(r1, c1) # 부모 노드 찾기
+    r2, c2 = find(r2, c2) # 부모 노드 찾기
+    if (r1, c1) == (r2, c2):
+        return
+    parent[r2][c2] = (r1, c1) # 부모 노드는 (r1, c1)을 fix해도 상관없음.
+    # 왜냐면, (r2, c2)가 자기 자신을 가리키는 상황에서,
+    # (r2, c2) -> (r1, c1)이 됨.
+    # 이 경우, (r2, c2)를 최상단 부모 노드로 가리키던 노드들의 최상단 부모 노드가 (r1, c1)으로 바뀜
+    v = cells[r1][c1] if cells[r1][c1] != '' else cells[r2][c2]
+    update1(r1, c1, v) # (r1, c1)을 최상단 부모 노드로 가지는 모든 셀들을 v로 업데이트
 
-    def unmerge(self, r, c):
-        # 병합된 셀이 값을 가지고 있는 경우: 그 값을 (r,c)에만 주고 나머지는 빈 문자열로 채움
-        val = self.cells[r][c]
-        for loc in self.merged[(r, c)]:
-            if loc != (r, c):
-                self.before_cells[loc[0]][loc[1]] = ''
-                self.cells[loc[0]][loc[1]] = ''
-            else:
-                self.before_cells[loc[0]][loc[1]] = val
-                self.cells[loc[0]][loc[1]] = val
-            self.merged[loc]
-    def print_cell(self, r, c):
-        return 'EMPTY' if self.cells[r][c] == '' else self.cells[r][c]
-        
+def unmerge(r, c):
+    root = find(r, c) # 부모 노드 찾기
+    v = cells[r][c]
+    for i in range(51):
+        for j in range(51):
+            if find(i, j) == root:
+                parent[i][j] = (i, j)
+                cells[i][j] = ''
+    cells[r][c] = v
+
+def print_(r, c):
+    return 'EMPTY' if cells[r][c] == '' else cells[r][c]
+
 def solution(commands):
+    global cells, parent
     answer = []
-    cells = cell()
+    cells = [[''] * 51 for _ in range(51)]
+    parent = [[(r, c) for c in range(51)] for r in range(51)]
     for c in commands:
         c = c.split()
-        if 'UPDATE' == c[0]:
+        if c[0] == 'UPDATE':
             if len(c) == 4:
-                cells.update1(int(c[1]), int(c[2]), c[3])
-            else:
-                cells.update2(c[1], c[2])
-        elif 'MERGE' == c[0]:
-            cells.merge(int(c[1]), int(c[2]), int(c[3]), int(c[4]))
-        elif 'UNMERGE' == c[0]:
-            cells.unmerge(int(c[1]), int(c[2]))
-        elif 'PRINT' == c[0]:
-            answer.append(cells.print_cell(int(c[1]), int(c[2])))
+                update1(int(c[1]), int(c[2]), c[3])
+            elif len(c) == 3:
+                update2(c[1], c[2])
+        elif c[0] == 'MERGE':
+            merge(int(c[1]), int(c[2]), int(c[3]), int(c[4]))
+        elif c[0] == 'UNMERGE':
+            unmerge(int(c[1]), int(c[2]))
+        else:
+            answer.append(print_(int(c[1]), int(c[2])))
     return answer
 
-print(solution([
-    "UPDATE 1 1 a", 
-    "UPDATE 1 2 b", 
-    "UPDATE 2 1 c", 
-    "UPDATE 2 2 d", 
-    "MERGE 1 1 1 2", 
-    "MERGE 2 2 2 1", 
-    "MERGE 2 1 1 1", 
-    "PRINT 1 1", 
-    "UNMERGE 2 2", 
-    "PRINT 1 1"
-    ]))
+# print(solution([
+#     "UPDATE 1 1 a", 
+#     "UPDATE 1 2 b", 
+#     "UPDATE 2 1 c", 
+#     "UPDATE 2 2 d", 
+#     "MERGE 1 1 1 2", 
+#     "MERGE 2 2 2 1", 
+#     "MERGE 2 1 1 1", 
+#     "PRINT 1 1", 
+#     "UNMERGE 2 2", 
+#     "PRINT 1 1"
+#     ]))
+print(solution(["UPDATE 1 1 menu", "UPDATE 1 2 category", "UPDATE 2 1 bibimbap", "UPDATE 2 2 korean", "UPDATE 2 3 rice", "UPDATE 3 1 ramyeon", "UPDATE 3 2 korean", "UPDATE 3 3 noodle", "UPDATE 3 4 instant", "UPDATE 4 1 pasta", "UPDATE 4 2 italian", "UPDATE 4 3 noodle", "MERGE 1 2 1 3", "MERGE 1 3 1 4", "UPDATE korean hansik", "UPDATE 1 3 group", "UNMERGE 1 4", "PRINT 1 3", "PRINT 1 4"]
+            ))
 
 """
 표 크기: 50 by 50 (고정)
@@ -170,3 +106,19 @@ print(solution([
 1. (r, c) 위치의 셀을 선택하여 셀의 값을 출력
 2. 선택한 셀이 빈 문자열인 경우: "EMPTY"를 출력
 """
+
+# menu 0 0
+# 0 0 0
+# 0 0 0"UPDATE 1 1 menu"
+
+# a b 0
+# 0 0 0
+# 0 0 0"UPDATE 1 2 b"
+
+# a b 0
+# c 0 0
+# 0 0 0"UPDATE 2 1 c"
+
+# a b 0
+# c d 0
+# 0 0 0"UPDATE 2 2 d"
