@@ -2,6 +2,7 @@
 # 직원을 둘 수 있는 경우의 수: len(weak) -> 모두 배치해보고,
 # 아직 점검 못한 지점이 있으면 그 다음으로 큰 dist의 직원을 배치한다.
 from bisect import bisect_right
+from itertools import permutations
 
 def solution(n, weak, dist):
     answer = 10 ** 8
@@ -10,16 +11,18 @@ def solution(n, weak, dist):
     for idx, start in enumerate(weak[:len(weak) // 2]): # 시작점 찾기 (시작점은 weak의 위치로 두기)
         # idx ~ idx + len(weak) - 1: 여기 전체 구간임.
         # weak[:len(weak) // 2]: 시작점을 원래의 weak의 길이만큼만 설정하는 것이 맞음.
-        cnt = 0
-        now = start
-        for d in dist:
-            now += d # d만큼의 이동
-            cnt += 1
-            if True if now >= weak[idx + len(weak) // 2 - 1] else False:
-                answer = min(answer, cnt)
-                break
-            else: # 다음 weak 찾기
-                now = weak[bisect_right(weak, now)]
+        for num in range(1, len(dist) + 1):
+            for permute in permutations(dist, num):
+                cnt = 0
+                now = start
+                for d in permute:
+                    now += d # d만큼의 이동
+                    cnt += 1
+                    if True if now >= weak[idx + len(weak) // 2 - 1] else False:
+                        answer = min(answer, cnt)
+                        break
+                    else: # 다음 weak 찾기
+                        now = weak[bisect_right(weak, now)]
     return answer if answer != 10 ** 8 else -1
 
 """
