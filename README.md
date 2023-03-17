@@ -95,6 +95,9 @@ git commit -m "BOJ_1000_홍길동_add"
 |12.30|백트래킹, 구현, dfs, 이분탐색, 최소힙큐|2차원 동전 뒤집기, 다단계 칫솔 판매, 무지의 먹방 라이브|프로그래머스 연습문제, 2021 Dev-Matching: 웹 백엔드 개발자(상반기), 2019 KAKAO BLIND RECRUITMENT|
 |01.13|누적합, DP, dfs, bfs, 트리|파일 합치기, 경주로 건설, 길찾기 게임|BOJ_11066, 2020 카카오 인턴쉽, 2019 KAKAO BLIND RECRUITMENT|
 |02.22|구현, DP, 데이크스트라, 힙, DFS, 비트 연산자|마법사 상어와 토네이도, 코딩테스트 공부, 표현 가능한 이진트리|BOJ_20057, 2023 KAKAO BLIND RECRUITMENT, 2022 KAKAO TECH INTERNSHIP|
+|03.3|브루트포스, bfs, dfs, union-find|연구소3, 미로탈출 명령어, 표 병합|BOJ_17142, 2023 KAKAO BLIND RECRUITMENT, 2023 KAKAO BLIND RECRUITMENT|
+|03.8|스택, dfs, 백트래킹, bfs|크게 만들기, 고고학 최고의 발견, 외벽 점검|BOJ_2812, 연습문제, 2020 KAKAO BLIND RECRUITMENT|
+|02.17|kmp 알고리즘, 그리디 알고리즘, 그래프 탐색, 시뮬레이션|주사위 굴리기2, Cubeditor, 택배 배달과 수거하기|BOJ_1701, BOJ_23288, 2023 KAKAO BLIND RECRUITMENT|
 
 ## 💖 참고사항
 

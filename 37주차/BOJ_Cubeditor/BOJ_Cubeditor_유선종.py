@@ -1,4 +1,21 @@
+def sub_string(string):
+    table = [0] * len(string)
+    j = 0
+    for i in range(1, len(string)):
+        while j > 0 and string[i] != string[j]:
+            j = table[j - 1]
+            
+        if string[i] == string[j]:
+            j += 1
+            table[i] = j
+    return table
 
+s = input()
+answer = 0
+for i in range(len(s)):
+    answer = max(answer, max(sub_string(s[i:])))
+    
+print(answer)
 
 # def sub_string(s:str):
 #     l = len(s)
