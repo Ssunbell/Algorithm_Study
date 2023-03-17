@@ -1,39 +1,46 @@
-"""
-0.5초 -> 1000만
-문자열 길이 5000 -> n^2 = 25,000,000 시간초과
-"""
 import sys
 input = sys.stdin.readline
 
-def hash_function(token): return ord(token)-96
+from collections import deque
 
-def hashing(text):
-    ans = 0
-    for idx, token in enumerate(reversed(text)):
-        ans += 27**idx * hash_function(token)
+dice = [1,2,3,4,5,6]
+dx = [0,1,0,-1]
+dy = [1,0,-1,0]
+
+def solve(n, m, k, board):
+    x, y, ans, dir = 0, 0, 0, 0
+    for _ in range(k):
+        if not 0<=x+dx[dir]<n or not 0<=y+dy[dir] < m:
+            dir = (dir+2)%4
+        x, y = x+dx[dir], y+dy[dir]
+        q = deque()
+        c = [[0]*m for _ in range(n)]
+        
+        c[x][y] = 1
+        q.append([x, y])
+        cnt = 0
+        while q:
+            x, y = q.popleft()
+            for i in range(4):
+                nx, ny = x + dx[i], y + dy[i]
+                if 0 <= nx < n and 0 <= ny < m:
+                    if c[nx][ny] == 0 and board[nx][ny] == board[x][y]:
+                        cnt += 1
+                        c[nx][ny] = 1
+                        q.append([nx, ny])
+
+        ans += (cnt + 1) * board[x][y]
+        if dir == 0: dice[0], dice[2], dice[3], dice[5] = dice[3], dice[0], dice[5], dice[2]
+        elif dir == 1: dice[0], dice[1], dice[4], dice[5] = dice[1], dice[5], dice[0], dice[4]
+        elif dir == 2: dice[0], dice[2], dice[3], dice[5] = dice[2], dice[5], dice[0], dice[3]
+        elif dir == 3: dice[0], dice[1], dice[4], dice[5] = dice[4], dice[0], dice[5], dice[1]
+        if dice[5] > board[x][y]:
+            dir = (dir+1)%4
+        elif dice[5] > board[x][y]:
+            dir = (dir+3)%4
     return ans
 
-def check(text, n):
-    first_hash_value = hashing(text[:n])
-    substrings = set()
-    substrings.add(first_hash_value)
-    for d, i in zip(text, text[n:]):
-        first_hash_value -= 27**(n-1)*hash_function(d)
-        first_hash_value *= 27
-        first_hash_value += hash_function(i)
-        if first_hash_value in substrings:
-            return True
-        substrings.add(first_hash_value)
-    return False
-    
-def solve(text):
-    txtlen = len(text)
-    for sublen in range(txtlen-1, 0, -1):
-        if check(text, sublen):
-            return sublen
-
-    return 0
-
 if __name__ == "__main__":
-    text = input().strip()
-    print(solve(text))
+    n, m, k = map(int, input().split())
+    board = [[*map(int, input().split())] for _ in range(n)]
+    print(solve(n, m, k, board))
