@@ -1,4 +1,17 @@
-def rotate_u(cube:list, dir:str):
+def surface_rotate(cube:list, dir:str, mode:int):
+    if mode == 1: # 회전 수행 전
+        if dir == '+':
+            cube[1][1] = [i[::-1] for i in zip(*cube[1][1])]
+        elif dir == '-':
+            cube[1][1] = [i for i in zip(*cube[1][1])][::-1]
+    else: # 회전 수행한 것이면,
+        if dir == '-':
+            cube[1][1] = [i[::-1] for i in zip(*cube[1][1])]
+        elif dir == '+':
+            cube[1][1] = [i for i in zip(*cube[1][1])][::-1]
+    return cube
+
+def rotate(cube:list, dir:str):
     a = cube[0][1][2]
     b = cube[2][1][0]
     if dir == '+':
@@ -11,7 +24,7 @@ def rotate_u(cube:list, dir:str):
     elif dir == '-':
         for i in range(3):
             cube[0][1][2][i] = cube[1][2][i][2]
-            cube[2][1][0][i]= cube[1][0][i][0]
+            cube[2][1][0][i] = cube[1][0][i][0]
         for i in range(3):
             cube[1][0][i][2] = a[2 - i]
             cube[1][2][i][2] = b[2 - i]
@@ -20,17 +33,25 @@ def rotate_u(cube:list, dir:str):
 def cubing(cube:list, q:str):
     loc, dir = q[0], q[1]
     if loc == 'U':
-        cube = rotate_u(cube, dir)
+        cube = rotate(cube, dir)
     elif loc == 'D':
-        cube = rotate_d(cube, dir)
+        cube[2][1], cube[3][1], cube[0][1], cube[1][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
+        cube = rotate(cube, dir)
+        cube[2][1], cube[3][1], cube[0][1], cube[1][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
     elif loc == 'F':
-        cube = rotate_f(cube, dir)
+        cube[3][1], cube[0][1], cube[1][1], cube[2][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
+        cube = rotate(cube, dir)
+        cube[1][1], cube[2][1], cube[3][1], cube[0][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
     elif loc == 'B':
-        cube = rotate_b(cube, dir)
+        cube[1][1], cube[2][1], cube[3][1], cube[0][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
+        cube = rotate(cube, dir)
+        cube[3][1], cube[0][1], cube[1][1], cube[2][1] = cube[0][1], cube[1][1], cube[2][1], cube[3][1]
     elif loc == 'L':
-        cube = rotate_l(cube, dir)
+        # cube = rotate_l(cube, dir)
+        pass
     elif loc == 'R':
-        cube = rotate_r(cube, dir)
+        # cube = rotate_r(cube, dir)
+        pass
     cube = rotate(cube, loc, dir) # 해당 면 회전
     return cube
 
