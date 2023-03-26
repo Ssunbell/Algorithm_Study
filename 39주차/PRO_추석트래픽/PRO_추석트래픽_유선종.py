@@ -20,7 +20,7 @@ def solution(lines:List[str]) -> int:
     answer = 0
     for t in throughput:
         tmp = 0
-        t_e = float(Decimal(str(t)) + Decimal('0.999'))
+        t_e = float_calculate(str(t), '1')
         for s, e in range_list:
             if (
                 t <= s <= t_e or
