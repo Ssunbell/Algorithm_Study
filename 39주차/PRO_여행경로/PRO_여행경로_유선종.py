@@ -1,20 +1,22 @@
-from collections import defaultdict
+from typing import *
 
-def solution(tickets):
+def solution(tickets:List[List[str]]):
     answer = []
-    airports = defaultdict(list)
-    tickets.sort(key = lambda x:(x[1], x[0]))
-    for depart, arrive in tickets:
-        airports[depart].append(arrive)
+    airports:Dict[str, List[str]] = {}
+    for depart, arrive in sorted(tickets, key = lambda x:(x[1], x[0])):
+        if depart in airports:
+            airports[depart].append(arrive)
+        else:
+            airports[depart] = [arrive]
     for key in airports:
         airports[key].sort(reverse=True)
         
     stack = ["ICN"]
     while stack:
         start = stack[-1]
-        if not airports[start]:
-            answer.append(stack.pop())
-        else:
+        try:
             stack.append(airports[start].pop())
+        except:
+            answer.append(stack.pop())
             
     return answer[::-1]
