@@ -9,7 +9,7 @@ def dfs(n:int, case:List[int]=[]):
     for i in range(4):
         dfs(n, case + [i])
 
-def solution(users, emoticons):
+def solution(users:List[List[int]], emoticons:List[int]) -> List[int]:
     n = len(emoticons)
     answer = [0,0]
     dfs(n)
