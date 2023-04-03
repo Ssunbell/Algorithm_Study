@@ -3,7 +3,7 @@ from typing import *
 def solution(tickets:List[List[str]]):
     answer = []
     airports:Dict[str, List[str]] = {}
-    for depart, arrive in sorted(tickets, key = lambda x:(x[1], x[0])):
+    for depart, arrive in sorted(tickets):
         if depart in airports:
             airports[depart].append(arrive)
         else:
