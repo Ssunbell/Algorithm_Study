@@ -28,16 +28,16 @@ def bfs():
             
             if rx == bx and ry == by:
                 if abs(rx-cur['rx']) + abs(ry-cur['ry']) > abs(bx-cur['bx']) + abs(by-cur['by']):
-                    rx-=dx
-                    ry-=dy
+                    rx -= dx
+                    ry -= dy
                 else:
-                    bx-=dx
-                    by-=dy
+                    bx -= dx
+                    by -= dy
             if not visited[ry][rx][by][bx]:
                 visited[ry][rx][by][bx] = True
                 next={}
-                next['ry'],next['rx'],next['by'],next['bx']=ry,rx,by,bx
-                next['count']=cur['count']+1
+                next['ry'], next['rx'], next['by'], next['bx']=ry, rx, by, bx
+                next['count'] = cur['count'] + 1
                 q.append(next)
     return -1
 
