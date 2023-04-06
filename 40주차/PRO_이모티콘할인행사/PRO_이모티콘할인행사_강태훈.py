@@ -1,8 +1,5 @@
-def make_iter(emoji_len):
-    for i in range(2**(2*emoji_len)):
-        bin_str = format(i, 'b').zfill(2*emoji_len)
-        yield list(map(lambda x:10*(1+int(x,2)), (bin_str[j:j+2] for j in range(0, 2*emoji_len, 2))))
-        
+from itertools import product
+
 def calc(user_rate, user_limit, item_prices, item_rates):
     total_price = 0
     for price, rate in zip(item_prices, item_rates):
@@ -14,6 +11,6 @@ def calc(user_rate, user_limit, item_prices, item_rates):
 
 def solution(users, emoticons):
     answer = [0,0]
-    for case in make_iter(len(emoticons)):
+    for case in product((10,20,30,40), repeat=len(emoticons)):
         answer = max(answer, [sum(i) for i in zip(*[calc(*user, emoticons, case) for user in users])])
     return answer
