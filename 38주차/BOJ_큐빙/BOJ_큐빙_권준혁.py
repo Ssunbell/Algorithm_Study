@@ -87,3 +87,15 @@ if __name__ == '__main__':
             cube = cubing(cube, q)
         for a in cube[1][2]: # 윗면 출력
             print(''.join(a))
+
+"""
+X 앞 X
+우 위 좌
+X 뒤 X
+X 아 X
+
+X 위 X
+우 뒤 좌
+X 아 X
+X 앞 X
+"""
