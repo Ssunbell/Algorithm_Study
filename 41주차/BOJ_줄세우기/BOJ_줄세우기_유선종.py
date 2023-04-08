@@ -12,19 +12,19 @@ for _ in range(M):
     indegree[b] += 1
 
 def topology_sort():
-    q = deque([])
+    stack = deque([])
     for i in range(1, N+1):
         if indegree[i] == 0:
-            q.append(i)
+            stack.append(i)
 
-    while q:
-        cur = q.popleft()
+    while stack:
+        cur = stack.pop()
         print(cur, end=' ')
         
         for i in graph[cur]:
             indegree[i] -= 1
             
             if indegree[i] == 0:
-                q.appendleft(i)
+                stack.append(i)
 
 topology_sort()
