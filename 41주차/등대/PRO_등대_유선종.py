@@ -10,9 +10,12 @@ def solution(n:int, lighthouse:List[List[int]]) -> int:
         tree[b].append(a)
     
     q = deque([])
-    for i, node in tree.items():
-        if len(node) == 1:
-            q.append(i)
+    k = 1
+    while not q:
+        for i, node in tree.items():
+            if len(node) == k:
+                q.append(i)
+        k += 1
     
     while q:
         light_on = []
