@@ -1,4 +1,5 @@
 #프로그래머스 블록 이동하기
+#틀린 코드 -> 36점
 from collections import deque
 
 def solution(board):
